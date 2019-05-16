@@ -47,6 +47,16 @@
     [self putObject:object withId:key intoTable:YYNetHttpLogTable];
 }
 
+/**
+ 清除数据
+ 
+ @param itemKey key
+ */
+- (void)clearData:(NSString *)itemKey {
+    NSString *key = [self md5:itemKey];
+    [self deleteObjectById:key fromTable:YYNetHttpLogTable];
+}
+
 - (NSString *)md5:(nullable NSString *)str {
     if (!str) return nil;
     

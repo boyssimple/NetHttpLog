@@ -30,6 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)saveDataToTable:(id)object withItemKey:(NSString *)itemKey;
 
+/**
+ 清除数据
+ 
+ @param itemKey key
+ */
+- (void)clearData:(NSString *)itemKey;
 @end
 
 NS_ASSUME_NONNULL_END
