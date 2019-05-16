@@ -6,8 +6,9 @@
 //  Copyright © 2018年 luowei. All rights reserved.
 //
 
-#import "VCNetHTTPList.h"
+#import "YYNetHttpLogController.h"
 #import "LogUtils.h"
+#import "YYNetHttpDBManager.h"
 
 @interface CellNetHttpList : UITableViewCell
 @property (nonatomic, strong) UILabel *lbUrl;
@@ -23,12 +24,12 @@
 @end
 
 
-@interface VCNetHTTPList ()<UITableViewDelegate, UITableViewDataSource>
+@interface YYNetHttpLogController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @end
 
-@implementation VCNetHTTPList
+@implementation YYNetHttpLogController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,9 +43,7 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithTitle:@"清除" style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonEvent)];
     self.navigationItem.rightBarButtonItem = rightButton;
     
-    
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSArray *datas = [user objectForKey:[LogUtils getVCName]];
+    NSArray *datas = [[[YYNetHttpDBManager share] aliveDataInDB:[LogUtils getVCName]] mutableCopy];
     if(datas){
         NSArray *rArray = (NSMutableArray *)[[datas reverseObjectEnumerator] allObjects];
         [self.dataSource addObjectsFromArray:rArray];
@@ -57,9 +56,7 @@
 }
 
 - (void)rightButtonEvent{
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user removeObjectForKey:[LogUtils getVCName]];
-    [user synchronize];
+    [[YYNetHttpDBManager share] clearData:[LogUtils getVCName]];
     [self.dataSource removeAllObjects];
     [self.table reloadData];
 }

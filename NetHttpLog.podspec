@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NetHttpLog"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A short description of NetHttpLog."
 
   # This description is used to generate tags and improve search results.
@@ -133,5 +133,7 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
+
+  s.dependency "LWOCKit"
 
 end

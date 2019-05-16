@@ -8,8 +8,9 @@
 
 #import "UIViewController+snake.h"
 #import <objc/runtime.h>
-#import "VCNetHTTPList.h"
+#import "YYNetHttpLogController.h"
 #import "LogUtils.h"
+#import "YYNetHttpLogConfig.h"
 
 @implementation UIViewController (snake)
 
@@ -83,11 +84,12 @@
 }
 
 - (void)openNetList{
-    
-    UIViewController *vc = [LogUtils getCurrentVC];
-    if(vc){
-        VCNetHTTPList *netVC = [[VCNetHTTPList alloc]init];
-        [vc presentViewController:[[UINavigationController alloc] initWithRootViewController:netVC] animated:TRUE completion:nil];
+    if ([YYNetHttpLogConfig share].enabled) {
+        UIViewController *vc = [LogUtils getCurrentVC];
+        if(vc){
+            YYNetHttpLogController *netVC = [[YYNetHttpLogController alloc]init];
+            [vc presentViewController:[[UINavigationController alloc] initWithRootViewController:netVC] animated:TRUE completion:nil];
+        }
     }
 }
 

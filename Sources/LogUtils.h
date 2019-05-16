@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
 @interface LogUtils : NSObject
 + (UIViewController *)getCurrentVC;
-+ (NSString*)getVCName:(UIViewController*)vc;
 + (NSString*)getVCName;
 @end

@@ -11,6 +11,7 @@
 #import "NSObject+extension.h"
 #import "LogUtils.h"
 #import "SYUnicode.h"
+#import "YYNetHttpDBManager.h"
 
 @implementation AFURLSessionManager (extension)
 
@@ -104,21 +105,18 @@
                                    };
             
             if(clsName){
-                NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-                NSArray *arr = [user objectForKey:clsName];
+                NSMutableArray *arr =  [[[YYNetHttpDBManager share] aliveDataInDB:clsName] mutableCopy];
                 
                 if(arr){
                     NSMutableArray *newArr = [arr mutableCopy];
                     [newArr addObject:data];
-                    [user setObject:newArr forKey:clsName];
+                    [[YYNetHttpDBManager share] saveDataToTable:newArr withItemKey:clsName];
                 }else{
                     NSMutableArray *newArr = [NSMutableArray array];
                     [newArr addObject:data];
-                    [user setObject:newArr forKey:clsName];
+                    [[YYNetHttpDBManager share] saveDataToTable:newArr withItemKey:clsName];
                 }
                 
-                
-                [user synchronize];
                 NSString *str = [NSString stringWithFormat:@"请求地址:%@请求参数：%@开始时间：%@完成时间：%@使用时长：%.2fms",url,param,start,[NSDate date],timeDistance];
                 NSLog(@"%@",str);
             }

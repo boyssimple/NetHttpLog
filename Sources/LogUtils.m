@@ -40,7 +40,9 @@
     return result;
 }
 
-+ (NSString*)getVCName:(UIViewController*)vc{
+
++ (NSString*)getVCName{
+    UIViewController *vc = [LogUtils getCurrentVC];
     NSString *name;
     if([vc isKindOfClass:[UINavigationController class]]){
         UINavigationController *nav = (UINavigationController *)vc;
@@ -51,25 +53,8 @@
                 name = NSStringFromClass(lvc.class);
             }
         }
-    }
-    return name;
-}
-
-
-+ (NSString*)getVCName{
-    UIViewController *vc = [LogUtils getCurrentVC];
-    NSString *name;
-    if(vc){
-        if([vc isKindOfClass:[UINavigationController class]]){
-            UINavigationController *nav = (UINavigationController *)vc;
-            if(nav){
-                if(nav.viewControllers.count > 0){
-                    UIViewController *lvc = [nav.viewControllers lastObject];
-                    NSLog(@"----%@",NSStringFromClass(lvc.class));
-                    name = NSStringFromClass(lvc.class);
-                }
-            }
-        }
+    }else{
+        name = NSStringFromClass([vc class]);
     }
     return name;
 }
