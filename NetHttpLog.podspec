@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NetHttpLog"
-  s.version      = "0.0.21"
+  s.version      = "0.0.22"
   s.summary      = "NetHttpLog"
 
   # This description is used to generate tags and improve search results.
@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.source_files  = "Sources/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
