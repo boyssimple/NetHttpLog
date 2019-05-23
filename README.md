@@ -7,3 +7,20 @@
 安装方式
 
 pod 'NetHttpLog'
+
+
+使用方式
+
+第一步引入 #import <YYNetHttpLogConfig.h>
+
+#if DEBUG
+#define HttpNetLogEnabled TRUE
+#else
+#define HttpNetLogEnabled FALSE
+#endif
+
+
+[YYNetHttpLogConfig share].enabled = HttpNetLogEnabled
+
+
+摇一摇就可以打开日志页面
