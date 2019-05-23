@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 #import "NSObject+extension.h"
 #import "LogUtils.h"
-#import "SYUnicode.h"
 #import "YYNetHttpDBManager.h"
 
 @implementation AFURLSessionManager (extension)

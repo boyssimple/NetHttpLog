@@ -28,14 +28,16 @@
             }
         }
     }
-    
-    UIView *frontView = [[window subviews] objectAtIndex:0];
-    id nextResponder = [frontView nextResponder];
-    
-    if ([nextResponder isKindOfClass:[UIViewController class]])
-        result = nextResponder;
-    else
-        result = window.rootViewController;
+    if([window subviews].count > 0){
+        
+        UIView *frontView = [[window subviews] objectAtIndex:0];
+        id nextResponder = [frontView nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]])
+            result = nextResponder;
+        else
+            result = window.rootViewController;
+    }
     
     return result;
 }
